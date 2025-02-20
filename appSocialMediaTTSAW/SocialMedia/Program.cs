@@ -43,7 +43,7 @@ builder.Services.AddCors(options =>
             .WithOrigins(
                 "https://localhost:7082", // IdentityAPI
                 "https://localhost:7119"  // PostAPI
-                "https://localhost:"
+                "https://localhost:7273/" //ProfileAPI
             )
             .AllowAnyMethod()
             .AllowAnyHeader()
