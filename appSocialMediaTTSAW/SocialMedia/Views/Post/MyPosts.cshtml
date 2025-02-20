@@ -1,0 +1,80 @@
+﻿@model IEnumerable<SocialMedia.Models.PostViewModel>
+
+        <h1>My Posts</h1>
+
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var post in Model)
+            {
+                <div class="post-card">
+                    <h3>@post.Content</h3>
+                    <p class="meta">Created on: @post.CreatedAt.ToString("yyyy-MM-dd HH:mm")</p>
+                    <p>@post.Content</p>
+                    
+                    <div class="actions">
+                        <a href="#">Edit</a>
+                        <a href="#">Delete</a>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No posts available.</p>
+        }
+
+
+ <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .post-card p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .post-card .meta {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .post-card .actions {
+            margin-top: 10px;
+        }
+
+        .post-card .actions a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .post-card .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>

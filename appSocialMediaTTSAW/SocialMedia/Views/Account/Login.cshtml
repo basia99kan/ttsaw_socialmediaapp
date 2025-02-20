@@ -1,0 +1,112 @@
+﻿@model SocialMedia.Models.LoginViewModel
+<div class="cont">
+<div class="form-container">
+    <h1>Logowanie</h1>
+
+    <form asp-action="Login" method="post">
+        <div class="form-group">
+            <label asp-for="Email">Adres e-mail</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Hasło</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Zaloguj</button>
+    </form>
+
+    <p class="registration-link">
+        Nie masz jeszcze konta? <a asp-controller="Account" asp-action="Register">Zarejestruj się</a>
+    </p>
+</div>
+</div>
+<style>
+    body {
+        background-image: url('/img/pexels-jean-paul-montanaro-49563862-30612998.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    
+    }
+    .cont
+    {
+     padding: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    }
+    /* Form container styles */
+    .form-container {
+        width: 650px;
+        padding: 60px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form group styles */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .text-danger {
+        font-size: 0.9em;
+        color: #d9534f;
+    }
+
+    /* Button styles */
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Registration link styles */
+    .registration-link {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 0.9em;
+    }
+
+    .registration-link a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .registration-link a:hover {
+        text-decoration: underline;
+    }
+</style>

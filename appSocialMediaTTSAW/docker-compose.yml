@@ -1,0 +1,51 @@
+
+services:
+  # IdentityAPI
+  identityapi:
+    build:
+      context: .
+      dockerfile: IdentityAPI/Dockerfile
+    ports:
+      - "5001:80"
+    networks:
+      - app-network
+
+  # ProfileAPI
+  profileapi:
+    build:
+      context: .
+      dockerfile: ProfileAPI/Dockerfile
+    ports:
+      - "5002:80"
+    networks:
+      - app-network
+
+  # PostAPI
+  postapi:
+    build:
+      context: .
+      dockerfile: PostAPI/Dockerfile
+    ports:
+      - "5003:80"
+    networks:
+      - app-network
+
+  # Frontend - SocialMedia
+  frontend:
+    build:
+      context: .
+      dockerfile: SocialMedia/Dockerfile
+    ports:
+      - "80:80"  
+    networks:
+      - app-network
+    depends_on:
+      - identityapi
+      - profileapi
+      - postapi
+
+
+
+networks:
+  app-network:
+    driver: bridge

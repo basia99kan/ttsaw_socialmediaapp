@@ -1,0 +1,92 @@
+﻿@model SocialMedia.Models.UserProfileViewModel
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Edytuj profil</h1>
+
+    <form asp-controller="UserProfile" asp-action="Edit" method="post">
+        <div class="card shadow-lg p-4 rounded">
+            <div class="form-group mb-3">
+                <label for="description">Opis</label>
+                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Wprowadź opis..."></textarea>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="location">Lokalizacja</label>
+                <input asp-for="Location" class="form-control" placeholder="Wprowadź lokalizację" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="hobby">Hobby</label>
+                <input asp-for="Hobby" class="form-control" placeholder="Wprowadź swoje hobby" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="website">Strona internetowa</label>
+                <input asp-for="Website" class="form-control" placeholder="Wprowadź stronę internetową" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="profilePictureUrl">Zdjęcie profilowe (URL)</label>
+                <input asp-for="ProfilePictureUrl" class="form-control" placeholder="Wprowadź URL zdjęcia profilowego" />
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+                <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .card {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        border: 1px solid #e1e1e1;
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #007bff;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+        font-weight: bold;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        font-weight: bold;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+</style>

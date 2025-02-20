@@ -1,0 +1,171 @@
+﻿@model IEnumerable<SocialMedia.Models.PostViewModel>
+
+<div class="container mt-4">
+  
+    <h1 class="text-center page-title">Latest Posts</h1>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row justify-content-center">
+            @foreach (var post in Model.OrderByDescending(p => p.CreatedAt))
+            {
+                <div class="col-md-8 mb-4">
+                    <div class="card post-card">
+                        <div class="card-header post-header">
+                             <div class="user-image-container">
+
+                                <img src="/img/man.png" 
+                                     alt="User Avatar" class="user-avatar" />
+                                       <i class="fas fa-user-circle"></i> <strong>Posted by UserId: @post.UserId</strong>
+                            </div>
+                          
+                        </div>
+                        <div class="card-body">
+                            <p class="post-content">@post.Content</p>
+                            <p class="text-muted post-date">
+                                <i class="far fa-clock"></i> @post.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")
+                            </p>
+
+                            <hr />
+
+                            <h6 class="mt-3"><i class="fas fa-comments"></i> Comments:</h6>
+                            @if (post.Comments != null && post.Comments.Any())
+                            {
+                                <ul class="list-unstyled mt-2 comment-list">
+                                    @foreach (var comment in post.Comments)
+                                    {
+                                        <li class="comment-item">
+                                            <p class="comment-text">@comment.Content</p>
+                                            <small class="text-muted comment-meta">
+                                                <i class="fas fa-user"></i> <strong>By UserId: @comment.UserId</strong> |
+                                                <i class="far fa-clock"></i> @comment.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss")
+                                            </small>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="text-muted no-comments">No comments yet.</p>
+                            }
+
+                            <form asp-controller="Comment" asp-action="AddComment" method="post" class="mt-3 comment-form">
+                                <input type="hidden" name="PostId" value="@post.Id" />
+                                <textarea name="Content" rows="2" class="form-control comment-textarea" placeholder="Write a comment..."></textarea>
+                                <button type="submit" class="btn mt-3 btn-sm btn-primary comment-btn">
+                                    <i class="fas fa-paper-plane"></i> Add Comment
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center">
+            <h3 class="text-muted">No posts available</h3>
+            <p>Be the first to share something!</p>
+        </div>
+    }
+</div>
+
+<style>
+    body {
+        background-image: url('/img/pexels-cottonbro-5077051.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: Arial, sans-serif;}
+    .user-avatar{
+        width: 40px;
+        height:40px;
+       border-radius: 50%;
+    border: 2px solid #007bff;
+        
+    }
+    card-body{
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    .page-title {
+         font-size: 2rem;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 1);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+                 }
+.post-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    border-left: 5px solid #007bff;
+}
+.post-card:hover {
+    transform: scale(1.02);
+}
+.post-header {
+    background: #f5f5f5;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.post-content {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+}
+.post-date {
+    font-size: 0.9rem;
+    color: #777;
+}
+.comment-list {
+    padding-left: 0;
+}
+
+.comment-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #007bff;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.comment-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 400;
+}
+
+.comment-meta {
+    font-size: 0.85rem;
+    color: #555;
+    font-style: italic;
+}
+.comment-form {
+    margin-top: 15px;
+}
+
+.comment-textarea {
+    border-radius: 6px;
+    resize: none;
+}
+
+.comment-btn {
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.comment-btn:hover {
+    background-color: #0056b3;
+}
+</style>

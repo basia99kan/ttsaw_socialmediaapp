@@ -1,0 +1,11 @@
+﻿@model IEnumerable<SocialMedia.Models.CommentViewModel>
+
+<h2>Add a Comment</h2>
+<form asp-action="AddComment" method="post">
+    <input type="hidden" name="PostId" value="@ViewBag.PostId" />
+    <div class="form-group">
+        <label for="Content">Comment</label>
+        <textarea name="Content" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
